@@ -8,11 +8,11 @@ const Login = () => {
 
   const [emailId,setEmail] = useState("zameeralucknowi@gmail.com");
   const [password,setPassword] = useState("Zameer@2399");
+  const [error,setError] = useState("");
   const dispath = useDispatch();
   const navigate = useNavigate()
   
   const handleLogin = async () =>{
-
       try {
         const res = await publicRequest.post('/login',
         {
@@ -22,8 +22,8 @@ const Login = () => {
       {withCredentials : true})
       dispath(addUser(res.data.data))  
       navigate('/')
-      } catch (error) {
-        console.error(error)
+      } catch (err) {
+        setError(err.response.data)
       }
   }
 
@@ -55,6 +55,7 @@ const Login = () => {
             </fieldset>
 
           </div>
+            <p className='text-red-700' >{error}</p>
           <div className="card-actions justify-center my-2">
             <button className="btn btn-primary" onClick={handleLogin} >Login</button>
           </div>
