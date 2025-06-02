@@ -1,26 +1,27 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import publicRequest from '../requestMethods';
+import { useState } from 'react'
+import publicRequest from '../utils/requestMethods';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
 
-  const [emailId,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-
+  const [emailId,setEmail] = useState("zameeralucknowi@gmail.com");
+  const [password,setPassword] = useState("Zameer@2399");
+  const dispath = useDispatch();
+  const navigate = useNavigate()
+  
   const handleLogin = async () =>{
+
       try {
         const res = await publicRequest.post('/login',
         {
           emailId,
           password
         },
-      {
-        withCredentials : true
-      })
-
-      console.log(res)
-        
-        
+      {withCredentials : true})
+      dispath(addUser(res.data.data))  
+      navigate('/')
       } catch (error) {
         console.error(error)
       }
@@ -34,7 +35,7 @@ const Login = () => {
           <h2 className="card-title justify-center ">LOGIN</h2>
           <div>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Email : {emailId}</legend>
+              <legend className="fieldset-legend">Email</legend>
               <input type="text" 
               className="input" 
               placeholder="" 
