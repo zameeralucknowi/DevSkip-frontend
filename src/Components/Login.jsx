@@ -14,7 +14,7 @@ const Login = () => {
   
   const handleLogin = async () =>{
       try {
-        const res = await publicRequest.post('/login',
+        const res = await publicRequest.post('/auth/login',
         {
           emailId,
           password
