@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'https://devskip-apis.onrender.com'
 
 const publicRequest = axios.create({
     baseURL : BASE_URL
