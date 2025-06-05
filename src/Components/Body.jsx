@@ -23,7 +23,7 @@ const Body = () => {
       }     
     } catch (err) {
       if(err.status === 401)
-      navigate('/auth/login')
+      navigate('/login')
       console.error(err)
     }
 
