@@ -9,9 +9,7 @@ const Connections = () => {
 
   const fetchConnections = async () => {
     try {
-      const res = await publicRequest.get('/user/request/connections', {
-        withCredentials: true,
-      });
+      const res = await publicRequest.get('/user/request/connections',{withCredentials:true});
       dispatch(addConnection(res.data.data));
     } catch (err) {
       console.log(err);
