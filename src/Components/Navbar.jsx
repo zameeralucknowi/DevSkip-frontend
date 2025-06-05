@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const handleLogout = async() =>{
     try {
-      const res = await publicRequest.post('/logout',{},{withCredentials:true});
+      const res = await publicRequest.post('/auth/logout',{},{withCredentials:true});
       dispath(removeUser());
       navigate('/login')
     } catch (err) {
