@@ -1,4 +1,4 @@
-import  { useEffect } from 'react'
+import  { useEffect} from 'react'
 import publicRequest from '../utils/requestMethods'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFeed } from '../utils/feedSlice';
@@ -24,7 +24,7 @@ const Feed = () => {
     },[])
 
   return (
-   feed &&  <div className='flex justify-center my-10' >
+   feed  &&  <div className='flex justify-center my-10' >
         <UserCard user={feed[0]} />
     </div>
   )
