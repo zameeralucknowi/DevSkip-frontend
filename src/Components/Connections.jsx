@@ -30,23 +30,23 @@ const Connections = () => {
       <h1 className="text-3xl font-bold mb-8">Connections</h1>
 
       <div className="w-full max-w-3xl space-y-6 my-5">
-        {connections.map((connection, idx) => {
-          const { firstName, lastName, age, gender, about, photoUrl } = connection;
+        {connections.map((connection) => {
+          const { _id, firstName, lastName, age, gender, about, photoUrl } = connection;
           return (
             <div
-              key={idx}
+              key={_id}
               className="flex flex-col md:flex-row items-center bg-base-200 shadow-md rounded-2xl overflow-hidden p-4 md:p-6 gap-4"
             >
               <div className="w-32 h-32 flex-shrink-0">
                 <img
                   src={photoUrl || 'https://via.placeholder.com/150'}
-                  alt={`${firstName} ${lastName!=undefined &&  lastName}`}
+                  alt={firstName}
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
 
               <div className="text-center md:text-left space-y-2">
-                <h2 className="text-xl font-semibold">{firstName + ' ' + lastName}</h2>
+                <h2 className="text-xl font-semibold">{`${firstName}  ${lastName!=undefined?lastName:""}`}</h2>
                 {age && gender && <p className="text-gray-400">{age}, {gender}</p>}
                 <p className="text-gray-700">{about}</p>
               </div>
