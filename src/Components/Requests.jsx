@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import publicRequest from '../utils/requestMethods';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRequest } from '../utils/requestSlice';
+import { addRequest, removeRequest } from '../utils/requestSlice';
 
 const Requests = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,17 @@ const Requests = () => {
       console.log(err);
     }
   };
+
+  const handleRequest = async(status,id) =>{
+    try {
+      const res = await publicRequest.post(`/request/review/${status}/${id}`,{},{withCredentials:true});
+      dispatch(removeRequest(id));
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
 
   useEffect(() => {
     fetchRequests();
@@ -59,10 +70,10 @@ const Requests = () => {
               </div>
 
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-4 md:mt-0 md:ml-auto">
-                <button className="btn btn-primary w-full md:w-auto hover:scale-105 transition-transform duration-200">
+                <button className="btn btn-primary w-full md:w-auto hover:scale-105 transition-transform duration-200" onClick={()=>handleRequest('accepted',request._id)} >
                   Accept
                 </button>
-                <button className="btn btn-outline btn-error w-full md:w-auto hover:scale-105 transition-transform duration-200">
+                <button className="btn btn-outline btn-error w-full md:w-auto hover:scale-105 transition-transform duration-200" onClick={()=>handleRequest('rejected',request._id)} >
                   Reject
                 </button>
               </div>
