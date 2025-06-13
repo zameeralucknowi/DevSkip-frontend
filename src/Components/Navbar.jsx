@@ -2,17 +2,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router';
 import publicRequest from '../utils/requestMethods';
 import { removeUser } from '../utils/userSlice';
+import { resetFeed } from '../utils/feedSlice';
 
 const Navbar = () => {
 
   const user = useSelector((store) => store.user);
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = async() =>{
     try {
       const res = await publicRequest.post('/auth/logout',{},{withCredentials:true});
-      dispath(removeUser());
+      dispatch(removeUser());
+      dispatch(resetFeed());
       navigate('/login')
     } catch (err) {
       console.error(err)
