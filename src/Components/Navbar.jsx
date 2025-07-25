@@ -56,6 +56,11 @@ const Navbar = () => {
                   Requests
                   </Link>
                   </li>
+                <li>
+                  <Link to={'/mockInterview'} >
+                  Mock Interview
+                  </Link>
+                  </li>
                 <li><a onClick={handleLogout} >Logout</a></li>
               </ul>
             </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import publicRequest from '../utils/requestMethods';
 import { useDispatch, useSelector } from 'react-redux';
 import { addConnection } from '../utils/connectionSlice';
+import { Link } from 'react-router';
 
 const Connections = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,12 @@ const Connections = () => {
                 <h2 className="text-xl font-semibold">{`${firstName}  ${lastName!=undefined?lastName:""}`}</h2>
                 {age && gender && <p className="text-gray-400">{age}, {gender}</p>}
                 <p className="text-gray-700">{about}</p>
+              </div>
+
+              <div className='ml-auto' >
+                <Link  to={`/chat/${_id}/${firstName}`}>
+                <button className='btn btn-primary' >chat</button>               
+                </Link>              
               </div>
             </div>
           );
